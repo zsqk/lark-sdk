@@ -1,5 +1,11 @@
 import { LARK_SERVER_ENDPOINT } from '../constants.ts';
 
+/**
+ * [doc](https://open.feishu.cn/document/ukTMukTMukTM/ukDNz4SO0MjL5QzM/get-)
+ * @param url
+ * @param param1
+ * @returns
+ */
 export async function fetchData(
   url: string | URL,
   { body, token, method = 'POST' }: {
