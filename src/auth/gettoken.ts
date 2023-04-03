@@ -14,7 +14,7 @@ export async function getAppAccessToken(opt: {
   'expire': number;
 }> {
   const url = new URL(
-    `${LARK_SERVER_ENDPOINT}/app_access_token/internal`,
+    `${LARK_SERVER_ENDPOINT}/auth/v3/app_access_token/internal`,
   );
   const res = await fetch(url, {
     method: 'POST',
