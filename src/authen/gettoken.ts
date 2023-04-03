@@ -1,5 +1,4 @@
-import { LARK_SERVER_ENDPOINT } from '../constants.ts';
-// TODO: 将请求通用化, 并统一处理错误
+import { fetchData } from '../utils/network.ts';
 
 /**
  * 获取 user_access_token
@@ -27,16 +26,9 @@ export async function getUserAccessToken(opt: {
     refresh_token: string;
   };
 }> {
-  const url = new URL(
-    `${LARK_SERVER_ENDPOINT}/authen/v1/access_token`,
-  );
-  const res = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ ...opt, grant_type: 'authorization_code' }),
-    headers: {
-      'Authorization': `Bearer ${app_access_token}`,
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-  }).then((res) => res.json());
+  const res = await fetchData('/authen/v1/access_token', {
+    body: { ...opt, grant_type: 'authorization_code' },
+    token: app_access_token,
+  });
   return res;
 }
